@@ -1,0 +1,47 @@
+---
+
+name: araport11_to_json
+description: Given a valid AGI locus return it's features from the Araport11 annotation
+version: 0.1
+tags:
+    - 'annotation'
+    - 'arabidopsis'
+
+authors:
+    - name: Erik Ferlanti
+      email: erik@jcvi.org
+      sponsor_organization: JCVI
+      sponsor_uri: http://www.jcvi.org
+
+type: generic
+main_module: services.araport11_to_json.main.py
+url: https://www.araport.org
+validate_request: true
+timeout: 120
+whitelist:
+    - www.araport.org
+icon: araport.png
+requirements:
+    - itertools
+    - gzip
+
+endpoints:
+    /search:
+        description: Extract features for a given locus from the Araport11 GFF and convert to JSON
+        parameters:
+            - name: locus
+              description: AGI Gene Locus identifier
+              type: string
+              required: true
+              default: AT1G51960
+    /list:
+        description: Return all the available loci from the Araport11 GFF in JSON format
+
+sources:
+    - title: Araport11 annotation
+      description: Arabidopsis thaliana Col-0 protein-coding gene set
+      sponsor_organization_name: J. Craig Venter Institute
+      sponsor_uri: http://www.jcvi.org/
+      provider_name: Christopher D. Town
+      provider_email: cdtown@jcvi.org
+      uri: https://www.araport.org/data/araport11

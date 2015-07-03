@@ -13,7 +13,7 @@ authors:
       sponsor_organization: JCVI
       sponsor_uri: http://www.jcvi.org
 
-type: query
+type: generic
 main_module: services.araport11_to_json.main.py
 url: https://www.araport.org
 validate_request: true
@@ -33,6 +33,11 @@ endpoints:
               default: AT1G51960
     /list:
         description: Return all the available loci from the Araport11 GFF in JSON format
+        parameters:
+            - name: locus
+              description: AGI Gene Locus identifier
+              type: string
+              required: false
 
 sources:
     - title: Araport11 annotation

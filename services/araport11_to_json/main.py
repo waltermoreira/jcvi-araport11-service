@@ -1,8 +1,9 @@
 import gzip
 import json
+import os.path as op
 import services.common.tools as tools
 
-ARAPORT11_GFF = 'data/Araport11_protein_coding_genes.gff3.gz'
+ARAPORT11_GFF = op.join(op.dirname(__file__), 'data', 'Araport11_protein_coding_genes.gff3.gz')
 
 def search(args):
     """
@@ -34,7 +35,7 @@ def search(args):
     print json.dumps(response, indent=2)
     print '---'
 
-def list():
+def list(args):
     """
     List all of the available loci from the Araport11 protein-coding gene set
     """

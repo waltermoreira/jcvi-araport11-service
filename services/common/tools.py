@@ -65,9 +65,10 @@ def read_block(handle, signal):
         yield None, seq
 
 def extract_agi_identifier(line):
-    p = re.compile(r'ID=(.*);')
+    id_line = line.split(';')[0]
+    p = re.compile(r'ID=(.*)')
     ident = ""
-    m = p.search(line)
+    m = p.search(id_line)
     if m:
         ident = m.group(1)
     return ident

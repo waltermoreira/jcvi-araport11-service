@@ -21,9 +21,6 @@ timeout: 120
 whitelist:
     - www.araport.org
 icon: araport.png
-requirements:
-    - itertools
-    - gzip
 
 endpoints:
     /search:

@@ -10,11 +10,19 @@ def search(args):
 
     locus is AGI identifier and is mandatory
     """
-    #locus = args['locus']
+    search_locus = args['locus']
 
     """
-    Parse the local Araport11 gff3 file
+    Parse the local Araport11 gff3 file to find the search locus
     """
+    locus_record = None
+    with gzip.open(ARAPORT11_GFF, 'r') as f:
+        for header, data in tools.read_block(f, '###'):
+            gene_fields = data[0].split('\t')
+            locus =  tools.extract_agi_identifier(gene_fields[8])
+            if search_locus == locus:
+                locus_record = data
+                break
 
     """
     Iterate through the results
@@ -22,20 +30,9 @@ def search(args):
     Print this json to stdout followed by a record separator "---"
     ADAMA takes care of serializing these results
     """
-    """
-    for result in response['lines']:
-
-        record = {
-                'locus': locus,
-                'class': 'locus_property',
-                'source_text_description': 'Reporter_Image_data',
-                'line_record': {
-                        'line_id': result['line_id']
-                }
-            }
-        print json.dumps(record, indent=2)
-        print '---'
-    """
+    response = tools.parse_gff_block(locus_record)
+    print json.dumps(response, indent=2)
+    print '---'
 
 def list():
     """

@@ -13,7 +13,7 @@ authors:
       sponsor_organization: JCVI
       sponsor_uri: http://www.jcvi.org
 
-type: generic
+type: query
 main_module: services.araport11_to_json.main.py
 url: https://www.araport.org
 validate_request: true

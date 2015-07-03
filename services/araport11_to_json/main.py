@@ -42,7 +42,7 @@ def list(args):
     List all of the available loci from the Araport11 protein-coding gene set
     """
 
-    response = []
+    response = { 'loci': [] }
     with gzip.open(ARAPORT11_GFF, 'r') as f:
         for header, data in tools.read_block(f, '###'):
             gene_fields = data[0].split('\t')
@@ -53,7 +53,7 @@ def list(args):
                 'class': 'locus_property',
                 'source_text_description': 'Araport11 locus'
             }
-            response.append(record)
+            response['loci'].append(record)
 
     if len(response) != 0:
         return 'application/json', json.dumps(response)

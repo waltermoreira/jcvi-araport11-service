@@ -30,7 +30,7 @@ endpoints:
               description: AGI Gene Locus identifier
               type: string
               required: true
-              default: AT1G51960
+              default: AT1G01010
     /list:
         description: Return all the available loci from the Araport11 GFF in JSON format
         parameters:

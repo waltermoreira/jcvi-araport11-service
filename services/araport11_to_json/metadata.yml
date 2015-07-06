@@ -2,7 +2,7 @@
 
 name: araport11_to_json
 description: Given a valid AGI locus return it's features from the Araport11 annotation
-version: 0.1
+version: 0.2
 tags:
     - 'annotation'
     - 'arabidopsis'
@@ -13,7 +13,7 @@ authors:
       sponsor_organization: JCVI
       sponsor_uri: http://www.jcvi.org
 
-type: generic
+type: query
 main_module: services.araport11_to_json.main.py
 url: https://www.araport.org
 validate_request: true

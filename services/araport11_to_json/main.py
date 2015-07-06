@@ -32,17 +32,14 @@ def search(args):
     ADAMA takes care of serializing these results
     """
     response = tools.parse_gff_block(locus_record)
-    if response:
-        return 'application/json', json.dumps(response)
-    else:
-        tools.fail('Failed to parse the gff file')
+    print json.dumps(response, indent=2)
+    print '---'
 
 def list(args):
     """
     List all of the available loci from the Araport11 protein-coding gene set
     """
 
-    response = { 'loci': [] }
     with gzip.open(ARAPORT11_GFF, 'r') as f:
         for header, data in tools.read_block(f, '###'):
             gene_fields = data[0].split('\t')
@@ -53,9 +50,6 @@ def list(args):
                 'class': 'locus_property',
                 'source_text_description': 'Araport11 locus'
             }
-            response['loci'].append(record)
 
-    if len(response) != 0:
-        return 'application/json', json.dumps(response)
-    else:
-        tools.fail('Failed to parse the gff file')
+            print json.dumps(record, indent=2)
+            print '---'
